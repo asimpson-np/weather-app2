@@ -1,9 +1,44 @@
-// apiKey stores the environment variable VITE_WEATHER_API based on the documentation from Vite https://vite.dev/guide/env-and-mode
-const apiKey = import.meta.env.VITE_WEATHER_API;
+import React, { useState, useEffect } from 'react';
+import { getWeather } from './services/weatherService';
 
-export async function getWeather(Georgia) {
-    // using fetch to grab weather data from openweathermap 2.5 using the syntax provided by the API documentation https://openweathermap.org/current?collection=current_forecast
-    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${Atlanta}&units=imperial&appid=$4685d553a4d035e54753d4f93f2dccc7`);
-    const data = await response.json();
-    return data;
-}
+const Weather = () => {
+  const [weatherData, setWeatherData] = useState(null);
+  const [city, Atlanta] = useState("Georgia");
+
+  useEffect(() => {
+    getWeather(Atlanta)
+  .then ((data) => setWeatherData (data))
+.catch ((err) => console/log(err));
+  }, {city});
+  const handleInputChange = (e) => {
+    setCity(e.target.value);
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    getWeather(city)
+    .then((data) => setWeatherData(data))
+    .catch((err) => console/log(err));
+  };
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Atlanta"
+          value={city}
+          onChange={handleInputChange}
+        />
+        <button type="submit">Get Weather</button>
+      </form>
+
+      {weatherData && (
+        <div>
+          <h2>{weatherData.name}</h2>
+          <p>Description: {weatherData.weather[0].description}</p>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default Weather;
