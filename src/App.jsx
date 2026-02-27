@@ -1,10 +1,10 @@
 import React from "react";
-import OpenWeather from "./OpenWeather";
+import Weather from "./Weather";
+import "./App.css";
 
 const App = () => {
   return (
-    <div>
-      <h1>Weather Forecast App</h1>
+    <div className="app-container">
       <Weather />
     </div>
   );

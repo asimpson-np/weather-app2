@@ -1,42 +1,53 @@
-#root {
-  max-width: 1300px;
-  margin: 0 auto;
+.app-container {
+  width: 350px;
   padding: 2rem;
+  border-radius: 20px;
+
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(15px);
+
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  color: white;
   text-align: center;
 }
 
-.logo {
-  height: 10em;
-  padding: 2.5em;
-  will-change: filter;
-  transition: filter 350ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #da098daa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #08d7c9aa);
+.app-container h1 {
+  margin-bottom: 1.5rem;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 1.5rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+input {
+  flex: 1;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
 }
 
-.card {
-  padding: 4em;
+button {
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  background-color: white;
+  color: #4facfe;
+  font-weight: bold;
+  transition: 0.3s ease;
 }
 
-.read-the-docs {
-  color: #888;
+button:hover {
+  background-color: #e0e0e0;
+}
+
+.weather-info h2 {
+  margin-bottom: 0.5rem;
+}
+
+.weather-info p {
+  margin: 5px 0;
 }

@@ -1,44 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { getWeather } from './services/weatherService';
+export const getWeather = async (city) => {
+  const API_KEY = "4685d553a4d035e54753d4f93f2dccc7"; // <-- Replace with your key
 
-const Weather = () => {
-  const [weatherData, setWeatherData] = useState(null);
-  const [city, Atlanta] = useState("Georgia");
-
-  useEffect(() => {
-    getWeather(Atlanta)
-  .then ((data) => setWeatherData (data))
-.catch ((err) => console/log(err));
-  }, {city});
-  const handleInputChange = (e) => {
-    setCity(e.target.value);
-  };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    getWeather(city)
-    .then((data) => setWeatherData(data))
-    .catch((err) => console/log(err));
-  };
-  return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Atlanta"
-          value={city}
-          onChange={handleInputChange}
-        />
-        <button type="submit">Get Weather</button>
-      </form>
-
-      {weatherData && (
-        <div>
-          <h2>{weatherData.name}</h2>
-          <p>Description: {weatherData.weather[0].description}</p>
-        </div>
-      )}
-    </div>
+  const response = await fetch(
+    `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=imperial`
   );
-};
 
-export default Weather;
+  if (!response.ok) {
+    throw new Error("Failed to fetch weather data");
+  }
+
+  return await response.json();
+}
